@@ -1,15 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
 
-import { extractReducers } from './store';
+import { extractReducers } from './utils';
+import { makeStore } from './store';
 
 
-const reducer = extractReducers('reducer');
+export const store = makeStore();
 
 export const actions = extractReducers('actions');
-
-export const store = configureStore({
-    reducer,
-});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

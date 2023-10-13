@@ -1,23 +1,33 @@
-import { services } from '@/services';
+import createSagaMiddleware, { Task } from 'redux-saga';
+import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
+import { configureStore } from '@reduxjs/toolkit';
+
+import { extractReducers, extractSagas } from './utils';
+import { createRootSaga } from './saga';
+import { bindMiddleware } from './middleware';
 
 
-type IServices = typeof services
+const reducer = extractReducers('reducer');
+const sagas = extractSagas();
 
-type IKeys = keyof IServices
+const sagaMiddleware = createSagaMiddleware();
 
 
-type Entities<Key extends keyof IServices[IKeys]['slice']> = {
-    [i in IKeys]?: IServices[i]['slice'][Key]
+interface ToolkitStoreExtended extends ToolkitStore {
+    sagaTask?: Task
 }
 
-export const extractReducers = <SliceKey extends keyof IServices[IKeys]['slice']>(sk: SliceKey) => {
-    const keys = Object.keys(services) as IKeys[];
+export const makeStore = () => {
+    const rootSaga = createRootSaga(sagas);
 
-    const returnee: Partial<Entities<SliceKey>> = {};
-
-    keys.forEach(key => {
-        returnee[key] = services[key].slice[sk];
+    const store: ToolkitStoreExtended = configureStore({
+        reducer,
+        middleware: getDefaultMiddleware =>
+            getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+        enhancers: [bindMiddleware([sagaMiddleware])],
     });
 
-    return returnee;
+
+    store.sagaTask = sagaMiddleware.run(rootSaga);
+    return store;
 };
