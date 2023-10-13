@@ -6,6 +6,7 @@ const customHooksWithDeps = [
     'useAction',
 ];
 
+
 module.exports = {
     extends: [
         'airbnb',
@@ -13,26 +14,28 @@ module.exports = {
         'plugin:@next/next/recommended',
         // 'next/core-web-vitals',
         'eslint:recommended',
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
     ],
-    "plugins": [
+    plugins: [
         '@typescript-eslint',
-        "import"
+        'import',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         project: './tsconfig.json',
-        tsconfigRootDir: "./"
+        tsconfigRootDir: './',
     },
     settings: {
         'import/extensions': extensions,
         'import/core-modules': [
             'redux-saga/effects',
         ],
-        "import/resolver": {
-            "typescript": {}
-        }
+        'import/resolver': {
+            typescript: {
+                project: ['./tsconfig.json'],
+            },
+        },
     },
     rules: {
         indent: 'off',
