@@ -1,5 +1,7 @@
 import { ForkEffect, all, cancel, take } from 'redux-saga/effects';
 
+import type { RootStore } from '.';
+
 
 const ABORT_SAGAS_HMR = 'ABORT_SAGAS_HMR';
 
@@ -22,4 +24,4 @@ export const createRootSaga = (sagas: (ForkEffect[] | undefined)[] = []) => {
     };
 };
 
-export const abortSagas = (store: any) => store.dispatch({ type: ABORT_SAGAS_HMR });
+export const abortSagas = (store: RootStore) => store.dispatch({ type: ABORT_SAGAS_HMR });

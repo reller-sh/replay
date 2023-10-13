@@ -1,4 +1,4 @@
-import { applyMiddleware } from 'redux';
+import { applyMiddleware, Middleware } from 'redux';
 
 
-export const bindMiddleware = (middleware: any) => applyMiddleware(...middleware);
+export const bindMiddleware = (middleware: Middleware[]) => applyMiddleware(...middleware);
