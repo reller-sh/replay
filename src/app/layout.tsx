@@ -11,4 +11,5 @@ const RootLayout: React.FC<PropsWithChildren> = ({ children }) => (
         </Providers>
     </html>
 );
+
 export default RootLayout;
