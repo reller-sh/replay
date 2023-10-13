@@ -1,5 +1,4 @@
 
-
 type CommonCallBack = (...arg: never[]) => boolean
 
 interface AsyncUntil {

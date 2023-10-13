@@ -6,39 +6,24 @@ const customHooksWithDeps = [
     'useAction',
 ];
 
-
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
     extends: [
-        'airbnb',
-        'airbnb/hooks',
-        'plugin:@next/next/recommended',
-        // 'next/core-web-vitals',
+        'next/core-web-vitals',
         'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended'
     ],
-    plugins: [
-        '@typescript-eslint',
-        'import',
-    ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        project: './tsconfig.json',
-        tsconfigRootDir: './',
-    },
     settings: {
         'import/extensions': extensions,
         'import/core-modules': [
             'redux-saga/effects',
         ],
-        'import/resolver': {
-            typescript: {
-                project: ['./tsconfig.json'],
-            },
-        },
     },
     rules: {
-        indent: 'off',
+        indent: ['error', 4, {
+            SwitchCase: 1,
+        }],
         camelcase: 'off',
         curly: ['error', 'multi-or-nest'],
         'implicit-arrow-linebreak': 'off',
@@ -73,8 +58,9 @@ module.exports = {
         'no-nested-ternary': 'off',
         'no-cond-assign': 'off',
         'no-param-reassign': 'off',
-        'no-use-before-define': 'off',
+        'no-use-before-define': 'error',
         'no-underscore-dangle': 'off',
+        'no-unused-vars': 'off',
         'no-return-await': 'off',
         'no-multiple-empty-lines': ['error', {
             max: 2,
@@ -92,11 +78,8 @@ module.exports = {
         }],
         'import/order': ['error', {
             pathGroups: [
-                {
-                    pattern: '@/**.scss',
-                    group: 'sibling',
-                    position: 'after',
-                },
+                {pattern: '**/*.scss', group: 'unknown'},
+                {pattern: '@/**/!(*.scss)', group: 'internal'},
             ],
             alphabetize: {
                 order: 'desc',
@@ -105,9 +88,10 @@ module.exports = {
             groups: [
                 ['builtin', 'external'],
                 'internal',
-                ['parent', 'index'],
+                'parent',
+                ['index', 'sibling'],
                 'type',
-                'sibling',
+                'unknown'
             ],
             'newlines-between': 'always',
         }],
@@ -144,11 +128,8 @@ module.exports = {
         }],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/ban-types': 'off',
-        '@typescript-eslint/no-use-before-define': 'error',
-        '@typescript-eslint/indent': ['error', 4, {
-            SwitchCase: 1,
-        }],
+        '@typescript-eslint/no-unused-vars': 'error',
         'jsx-a11y/anchor-is-valid': 'off',
         '@next/next/no-img-element': 'off', // TODO: remove img filtering rule in future
-    },
-};
+    }
+}
