@@ -26,7 +26,7 @@ module.exports = {
         curly: ['error', 'multi-or-nest'],
         'implicit-arrow-linebreak': 'off',
         'nonblock-statement-body-position': ['error', 'below'],
-        'linebreak-style': ['error', 'unix'],
+        'linebreak-style': ['error', 'windows'],
         'jsx-quotes': ['error', 'prefer-single'],
         'arrow-parens': ['error', 'as-needed', {
             requireForBlockBody: false,
@@ -55,6 +55,7 @@ module.exports = {
         'no-plusplus': 'off',
         'no-nested-ternary': 'off',
         'no-cond-assign': 'off',
+        'no-param-reassign': 'off',
         'no-use-before-define': 'off',
         'no-underscore-dangle': 'off',
         'no-return-await': 'off',
@@ -72,7 +73,18 @@ module.exports = {
         'import/newline-after-import': ['error', {
             count: 2,
         }],
-        'import/order': ['warn', {
+        'import/order': ['error', {
+            pathGroups: [
+                {
+                    pattern: '@/**.scss',
+                    group: 'sibling',
+                    position: 'after',
+                },
+            ],
+            alphabetize: {
+                order: 'desc',
+                caseInsensitive: true,
+            },
             groups: [
                 ['builtin', 'external'],
                 'internal',

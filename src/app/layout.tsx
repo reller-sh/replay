@@ -1,18 +1,14 @@
 import React, { PropsWithChildren } from 'react';
+import { Providers } from '@/components/Providers';
 
-import type { Metadata } from 'next';
 import '@/styles/global.scss';
 
 
-export const metadata: Metadata = {
-    title: 'Replay app',
-    description: 'Generate by me!',
-};
-
 const RootLayout: React.FC<PropsWithChildren> = ({ children }) => (
     <html lang='en'>
-        <body>{children}</body>
+        <Providers>
+            <body>{children}</body>
+        </Providers>
     </html>
 );
-
 export default RootLayout;
