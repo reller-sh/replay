@@ -11,8 +11,12 @@ module.exports = {
     extends: [
         'next/core-web-vitals',
         'eslint:recommended',
+        'plugin:import/warnings',
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended'
+    ],
+    plugins: [
+        'import',
     ],
     settings: {
         'import/extensions': extensions,
@@ -77,10 +81,10 @@ module.exports = {
             count: 2,
         }],
         'import/order': ['error', {
-            pathGroups: [
-                {pattern: '**/*.scss', group: 'unknown'},
-                {pattern: '@/**/!(*.scss)', group: 'internal'},
-            ],
+            // pathGroups: [
+            //     {pattern: '**/*.scss', group: 'unknown'},
+            //     {pattern: '@/**/!(*.scss)', group: 'internal'},
+            // ],
             alphabetize: {
                 order: 'desc',
                 caseInsensitive: true,
