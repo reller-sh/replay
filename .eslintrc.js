@@ -28,7 +28,7 @@ module.exports = {
         curly: ['error', 'multi-or-nest'],
         'implicit-arrow-linebreak': 'off',
         'nonblock-statement-body-position': ['error', 'below'],
-        'linebreak-style': ['error', 'unix'],
+        'linebreak-style': ['error', 'windows'],
         'jsx-quotes': ['error', 'prefer-single'],
         'arrow-parens': ['error', 'as-needed', {
             requireForBlockBody: false,
