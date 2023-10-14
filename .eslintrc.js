@@ -80,25 +80,25 @@ module.exports = {
         'import/newline-after-import': ['error', {
             count: 2,
         }],
-        // 'import/order': ['error', {
-        // pathGroups: [
-        //     {pattern: '**/*.scss', group: 'unknown'},
-        //     {pattern: '@/**/!(*.scss)', group: 'internal'},
-        // ],
-        // alphabetize: {
-        //     order: 'desc',
-        //     caseInsensitive: true,
-        // },
-        // groups: [
-        //     ['builtin', 'external'],
-        //     'internal',
-        //     'parent',
-        //     ['index', 'sibling'],
-        //     'type',
-        //     'unknown'
-        // ],
-        // 'newlines-between': 'always',
-        // }],
+        'import/order': ['error', {
+            pathGroups: [
+                {pattern: '**/*.scss', group: 'unknown'},
+                {pattern: '@/**/!(*.scss)', group: 'internal'},
+            ],
+            alphabetize: {
+                order: 'desc',
+                caseInsensitive: true,
+            },
+            groups: [
+                ['builtin', 'external'],
+                'internal',
+                'parent',
+                ['index', 'sibling'],
+                'type',
+                'unknown'
+            ],
+            'newlines-between': 'always',
+        }],
         'react/jsx-props-no-spreading': 'off',
         'react/prop-types': 'off',
         'react/require-default-props': 'off',
