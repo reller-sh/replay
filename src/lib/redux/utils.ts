@@ -14,13 +14,13 @@ type Entities<Key extends keyof IServices[IKeys]['slice']> = {
 export const extractReducers = <SliceKey extends keyof IServices[IKeys]['slice']>(sk: SliceKey) => {
     const keys = Object.keys(services) as IKeys[];
 
-    const returnee: Partial<Entities<SliceKey>> = {};
+    const returnee: any = {};
 
     keys.forEach(key => {
         returnee[key] = services[key].slice[sk];
     });
 
-    return returnee;
+    return returnee as Entities<SliceKey>;
 };
 
 

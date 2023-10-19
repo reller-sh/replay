@@ -6,7 +6,7 @@ import '@/styles/global.scss';
 
 
 const RootLayout: React.FC<PropsWithChildren> = ({ children }) => (
-    <html lang='en'>
+    <html lang='ru'>
         <Providers>
             <body>{children}</body>
         </Providers>

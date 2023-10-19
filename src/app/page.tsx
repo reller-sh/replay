@@ -8,7 +8,7 @@ import { HydrationToStore } from '@/components/HydrationToStore';
 const Home: React.FC = () => (
     <main>
         Page
-        <HydrationToStore action={actions.again?.increment()} />
+        <HydrationToStore action={actions.check.increment()} />
         <Some />
     </main>
 );
