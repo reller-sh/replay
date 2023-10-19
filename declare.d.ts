@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import { compose, Store } from 'redux';
 
 
