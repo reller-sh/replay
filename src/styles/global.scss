@@ -36,3 +36,10 @@
 @import "bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
+
+@import "geometria.font";
+
+
+* {
+  font-family: Geometria, serif;
+}
