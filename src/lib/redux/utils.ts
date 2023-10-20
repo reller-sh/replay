@@ -1,5 +1,4 @@
-
-import { services } from '@/services';
+import {services} from '@/services';
 
 
 type IServices = typeof services
@@ -14,13 +13,9 @@ type Entities<Key extends keyof IServices[IKeys]['slice']> = {
 export const extractReducers = <SliceKey extends keyof IServices[IKeys]['slice']>(sk: SliceKey) => {
     const keys = Object.keys(services) as IKeys[];
 
-    const returnee: any = {};
-
-    keys.forEach(key => {
-        returnee[key] = services[key].slice[sk];
-    });
-
-    return returnee as Entities<SliceKey>;
+    return Object.fromEntries(keys.map(key => (
+        [key, services[key].slice[sk]]
+    ))) as Entities<SliceKey>;
 };
 
 

@@ -1,15 +1,9 @@
-
 import React from 'react';
-import { actions } from '@/lib/redux';
-import { Some } from '@/components/Some';
-import { HydrationToStore } from '@/components/HydrationToStore';
 
 
 const Home: React.FC = () => (
     <main>
-        Page
-        <HydrationToStore action={actions.check.increment()} />
-        <Some />
+        Authorization check may be here
     </main>
 );
 export default Home;
