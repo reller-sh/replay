@@ -6,4 +6,5 @@ import { sagas } from './sagas';
 export const check = {
     slice: checkSlice,
     sagas,
+    subActions: {}
 };

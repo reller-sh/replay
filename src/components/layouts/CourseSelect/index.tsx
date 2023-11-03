@@ -1,6 +1,5 @@
 'use client'
 
-
 import React, {PropsWithChildren} from "react";
 import {useFormWithComponent} from "@/lib/hooks/useFormWithComponent";
 import {actions} from "@/lib/redux";
@@ -13,7 +12,7 @@ export const CourseSelect: React.FC<PropsWithChildren> = ({ children }) => {
 
     const { Form } = useFormWithComponent(all => {
         console.log(all)
-        dp(actions.order.setStepInfo({ path: "/select/first" }))
+        dp(actions.order.setStepInfo({ path: "/select/first", stepData: {} }))
     })
     return (
         <>

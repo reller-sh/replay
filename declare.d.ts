@@ -12,6 +12,8 @@ declare global {
 
     interface IEnv {
         NODE_ENV: 'development' | 'production'
+
+        NEXT_PUBLIC_DIRECTUS_URL: string
     }
     interface Process extends NodeJS.Process{
         env: IEnv

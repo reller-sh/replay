@@ -1,4 +1,14 @@
+@import '@/styles/vars';
+
+.wrapper {
+  background-color: map-get($baseColors, 'PurpleBackground3');
+}
 
 .container {
-  margin: 15px;
+  padding: 15px;
+}
+
+
+.logo {
+  gap: 10px;
 }

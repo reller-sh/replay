@@ -1,6 +1,8 @@
 
 
-export const baseColor = {
+export type IBreakpoints = 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+
+export const baseColors = {
     // Purple
     PurplePrimary1: '#6F57D6',
     PurplePrimary2: '#7B61EB',
@@ -54,3 +56,4 @@ export const baseColor = {
 }
 
 
+export type IColors = keyof typeof baseColors;

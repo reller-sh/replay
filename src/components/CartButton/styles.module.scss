@@ -1,0 +1,19 @@
+@import "@/styles/vars";
+@import "@/styles/utils/containers";
+
+
+.container {
+  @include defaultBorderBack;
+  border-radius: 6px;
+
+  padding: 11px 14px;
+
+}
+
+.counter {
+  width: 22px;
+  height: 22px;
+
+  background-color: map-get($baseColors, 'PurplePrimary3');
+  border-radius: 50%;
+}

@@ -1,0 +1,8 @@
+
+@import "../vars";
+
+
+@mixin defaultBorderBack {
+  background-color: map-get($baseColors, 'OtherWhite');
+  border: 1px solid map-get($baseColors, 'GreyBackground2');
+}

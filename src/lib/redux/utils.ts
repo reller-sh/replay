@@ -6,7 +6,9 @@ type IServices = typeof services
 type IKeys = keyof IServices
 
 
-type Entities<Key extends keyof IServices[IKeys]['slice']> = {
+type Entities<Key extends keyof IServices[IKeys]['slice']> = Key extends 'actions' ? {
+    [i in IKeys]: IServices[i]['slice'][Key] & IServices[i]['subActions']
+} : {
     [i in IKeys]: IServices[i]['slice'][Key]
 }
 
@@ -14,22 +16,22 @@ export const extractReducers = <SliceKey extends keyof IServices[IKeys]['slice']
     const keys = Object.keys(services) as IKeys[];
 
     return Object.fromEntries(keys.map(key => (
-        [key, services[key].slice[sk]]
+        [key, sk === 'actions' ? { ...(services[key].slice[sk] as any), ...services[key].subActions} : services[key].slice[sk]]
     ))) as Entities<SliceKey>;
 };
-
 
 type Sagas = (IServices[IKeys]['sagas'])[]
 
 export const extractSagas = () => {
     const keys = Object.keys(services) as IKeys[];
 
-    const returnee: Partial<Sagas> = [];
+    let returnee: any[] = [];
 
     keys.forEach(key => {
-        returnee.push(services[key].sagas);
+        returnee = [...returnee, ...services[key].sagas];
     });
 
-    return returnee;
+
+    return returnee as Partial<Sagas>;
 };
 

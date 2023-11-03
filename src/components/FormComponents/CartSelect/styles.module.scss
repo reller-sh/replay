@@ -1,0 +1,20 @@
+@import "src/styles/utils/containers";
+
+.container {
+  @include defaultBorderBack;
+
+  border-radius: 8px;
+
+  width: 100%;
+  padding: 14px 16px;
+
+  gap: 10px;
+}
+
+.emojiContainer {
+  background-color: map-get($baseColors, 'CyaniteBackgound3');
+
+  border-radius: 6px;
+  width: 42px;
+  height: 42px;
+}

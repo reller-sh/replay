@@ -6,3 +6,6 @@ export enum LoadingStatus {
     LOADED = 'LOADED',
     ERROR = 'ERROR',
 }
+
+
+export type Nullable <Type> = Type | null

@@ -5,4 +5,5 @@ import { sagas } from './sagas';
 export const auth = {
     slice,
     sagas,
+    subActions: {}
 };

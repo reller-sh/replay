@@ -1,0 +1,93 @@
+@import "src/styles/vars";
+@import "bootstrap/scss/mixins/breakpoints";
+
+
+.base {
+  gap: 4px;
+  font-family: Geometria, serif;
+
+  line-height: normal;
+  font-style: normal;
+}
+
+@each $name, $color in $baseColors {
+  .#{$name}Color {
+    color: $color;
+  }
+}
+
+
+@each $bp, $px in $grid-breakpoints {
+  @include media-breakpoint-up($bp) {
+
+    @for $i from 1 through 9 {
+      .#{$bp}P#{$i} {
+        font-size: 1px * (19 - $i);
+        font-weight: 400;
+      }
+      .#{$bp}P#{$i}Medium {
+        font-size: 1px * (19 - $i);
+        font-weight: 500;
+      }
+      .#{$bp}P#{$i}Bold {
+        font-size: 1px * (19 - $i);
+        font-weight: 700;
+      }
+
+      .#{$bp}Subtitle1 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 120%;
+
+        &Medium {
+          font-size: 24px;
+          font-weight: 500;
+          line-height: 120%;
+        }
+      }
+      .#{$bp}Subtitle2 {
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 120%;
+
+        &Medium {
+          font-size: 22px;
+          font-weight: 500;
+          line-height: 25px;
+        }
+      }
+      .#{$bp}Subtitle3 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 120%;
+
+        &Medium {
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 120%;
+        }
+      }
+
+
+      .#{$bp}H1 {
+        font-size: 32px;
+        font-weight: 500;
+      }
+      .#{$bp}H2 {
+        font-size: 28px;
+        font-weight: 500;
+
+        &Bold {
+          font-size: 28px;
+          font-weight: 700;
+        }
+      }
+      .#{$bp}H3Bold {
+        font-size: 26px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+

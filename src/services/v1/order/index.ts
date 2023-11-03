@@ -1,8 +1,9 @@
+import {sagas, subActions} from './sagas';
 import { slice } from './reducer';
-import { sagas } from './sagas';
 
 
 export const order = {
     slice,
     sagas,
+    subActions,
 };

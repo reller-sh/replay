@@ -27,6 +27,6 @@ export const makeStore = () => {
     });
 
 
-    (store as any).sagaTask = sagaMiddleware.run(rootSaga) as any;
+    (store as any).sagaTask = sagaMiddleware.run(rootSaga);
     return store;
 };

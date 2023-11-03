@@ -7,5 +7,5 @@ function* yieldCheck(...all: any[]): Generator<any, void, any> {
 
 
 export const sagas = [
-    takeEvery('SOME_ACTION', yieldCheck),
+    takeEvery('SOME_ACTION2', yieldCheck),
 ];
