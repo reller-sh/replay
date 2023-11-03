@@ -13,18 +13,19 @@ export const subActions = {
 }
 
 function* getSubjects({ payload }: PayloadAction<string>): Generator<any, void, any> {
-    console.log('request')
+    console.log('request', payload)
+
     const request = () => client.request(readItems('subjects', {
         fields: ['id', 'icon', 'name', 'examType'],
-        filter: {
-            _and: [{
-                examType: {
-                    shortCode: {
-                        _eq: payload
-                    }
-                }
-            }]
-        }
+        // filter: {
+        //     _and: [{
+        //         examType: {
+        //             shortCode: {
+        //                 _eq: payload
+        //             }
+        //         }
+        //     }]
+        // }
         // deep: {
         //     examTypes: {
         //         _filter: {
