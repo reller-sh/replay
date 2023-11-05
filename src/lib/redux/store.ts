@@ -3,7 +3,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { extractReducers, extractSagas } from './utils';
 import { createRootSaga } from './saga';
-import { bindMiddleware } from './middleware';
 
 
 const reducer = extractReducers('reducer');
@@ -22,8 +21,8 @@ export const makeStore = () => {
     const store = configureStore({
         reducer,
         middleware: getDefaultMiddleware =>
-            getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
-        enhancers: [bindMiddleware([sagaMiddleware])],
+            getDefaultMiddleware().concat(sagaMiddleware),
+        // enhancers: [bindMiddleware([sagaMiddleware])],
     });
 
 

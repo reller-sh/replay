@@ -1,9 +1,7 @@
-import {call, put, takeLatest} from 'redux-saga/effects';
+import {call, takeLatest} from 'redux-saga/effects';
 import { actionCreator } from "@/lib/redux/actions";
 import {client} from "@/lib/client/directus";
 import {PayloadAction} from "@reduxjs/toolkit";
-import { slice } from './reducer';
-import {readItems} from "@directus/sdk";
 
 
 const action = actionCreator('order');
@@ -15,41 +13,24 @@ export const subActions = {
 function* getSubjects({ payload }: PayloadAction<string>): Generator<any, void, any> {
     console.log('request', payload)
 
-    const request = () => client.request(readItems('subjects', {
-        fields: ['id', 'icon', 'name', 'examType'],
-        // filter: {
-        //     _and: [{
-        //         examType: {
-        //             shortCode: {
-        //                 _eq: payload
-        //             }
-        //         }
-        //     }]
-        // }
-        // deep: {
-        //     examTypes: {
-        //         _filter: {
-        //             shortCode: {
-        //                 _eq: payload,
-        //             }
-        //         }
-        //     }
-        // }
-        // filter: {
-        //     examType: {
-        //         shortCode: {
-        //             _eq: payload,
-        //         }
-        //     }
-        // }
-    }))
 
-    const subjects = yield call(request)
+    const subjects = yield call(async () => (await client.subscribe('subjects', {
+        event: 'update',
+        query: { fields: ['*'] },
+    })).subscription)
 
-    yield put(slice.actions.setSubjects(subjects))
+    while (true)
+        console.log(yield subjects.next())
+    // console.log(yield call(async () => subjects.next()))
+
+
+    // while (true) {
+    // console.log(yield subjects.next())
+    // }
+    // yield put(slice.actions.setSubjects(subjects))
 }
 
 
 export const sagas = [
-    takeLatest(subActions.loadSubjects, getSubjects),
+    takeLatest(subActions.loadSubjects.type, getSubjects),
 ];

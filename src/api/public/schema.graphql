@@ -1,0 +1,217 @@
+type Query {
+  tm(filter: tm_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [tm!]!
+  tm_by_id(id: ID!): tm
+  tm_aggregated(groupBy: [String], filter: tm_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [tm_aggregated!]!
+}
+
+type Subscription {
+  tm_mutated(event: EventEnum): tm_mutated
+}
+
+"""The `Boolean` scalar type represents `true` or `false`."""
+scalar Boolean
+
+"""
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+"""
+scalar Float
+
+"""A Float or a String"""
+scalar GraphQLStringOrFloat
+
+"""
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+"""
+scalar ID
+
+"""
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+"""
+scalar Int
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+"""
+scalar String
+
+enum EventEnum {
+  create
+  update
+  delete
+}
+
+type tm {
+  id: ID!
+  name: String
+}
+
+type tm_aggregated {
+  group: JSON
+  countAll: Int
+  count: tm_aggregated_count
+  countDistinct: tm_aggregated_count
+  avg: tm_aggregated_fields
+  sum: tm_aggregated_fields
+  avgDistinct: tm_aggregated_fields
+  sumDistinct: tm_aggregated_fields
+  min: tm_aggregated_fields
+  max: tm_aggregated_fields
+}
+
+type tm_aggregated_count {
+  id: Int
+  name: Int
+}
+
+type tm_aggregated_fields {
+  id: Float
+}
+
+type tm_mutated {
+  key: ID!
+  event: EventEnum
+  data: tm
+}
+
+input number_filter_operators {
+  _eq: GraphQLStringOrFloat
+  _neq: GraphQLStringOrFloat
+  _in: [GraphQLStringOrFloat]
+  _nin: [GraphQLStringOrFloat]
+  _gt: GraphQLStringOrFloat
+  _gte: GraphQLStringOrFloat
+  _lt: GraphQLStringOrFloat
+  _lte: GraphQLStringOrFloat
+  _null: Boolean
+  _nnull: Boolean
+  _between: [GraphQLStringOrFloat]
+  _nbetween: [GraphQLStringOrFloat]
+}
+
+input string_filter_operators {
+  _eq: String
+  _neq: String
+  _contains: String
+  _icontains: String
+  _ncontains: String
+  _starts_with: String
+  _nstarts_with: String
+  _istarts_with: String
+  _nistarts_with: String
+  _ends_with: String
+  _nends_with: String
+  _iends_with: String
+  _niends_with: String
+  _in: [String]
+  _nin: [String]
+  _null: Boolean
+  _nnull: Boolean
+  _empty: Boolean
+  _nempty: Boolean
+}
+
+input tm_filter {
+  id: number_filter_operators
+  name: string_filter_operators
+  _and: [tm_filter]
+  _or: [tm_filter]
+}er, sort: [String], limit: Int, offset: Int, page: Int, search: String): examTypes
+}
+
+type subjects_aggregated {
+  group: JSON
+  countAll: Int
+  count: subjects_aggregated_count
+  countDistinct: subjects_aggregated_count
+  avg: subjects_aggregated_fields
+  sum: subjects_aggregated_fields
+  avgDistinct: subjects_aggregated_fields
+  sumDistinct: subjects_aggregated_fields
+  min: subjects_aggregated_fields
+  max: subjects_aggregated_fields
+}
+
+type subjects_aggregated_count {
+  id: Int
+  sort: Int
+  name: Int
+  icon: Int
+  examType: Int
+}
+
+type subjects_aggregated_fields {
+  sort: Float
+}
+
+type subjects_mutated {
+  key: ID!
+  event: EventEnum
+  data: subjects
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
+}
+
+input examTypes_filter {
+  shortCode: string_filter_operators
+  sort: number_filter_operators
+  name: string_filter_operators
+  icon: string_filter_operators
+  subjects: subjects_filter
+  subjects_func: count_function_filter_operators
+  _and: [examTypes_filter]
+  _or: [examTypes_filter]
+}
+
+input number_filter_operators {
+  _eq: GraphQLStringOrFloat
+  _neq: GraphQLStringOrFloat
+  _in: [GraphQLStringOrFloat]
+  _nin: [GraphQLStringOrFloat]
+  _gt: GraphQLStringOrFloat
+  _gte: GraphQLStringOrFloat
+  _lt: GraphQLStringOrFloat
+  _lte: GraphQLStringOrFloat
+  _null: Boolean
+  _nnull: Boolean
+  _between: [GraphQLStringOrFloat]
+  _nbetween: [GraphQLStringOrFloat]
+}
+
+input string_filter_operators {
+  _eq: String
+  _neq: String
+  _contains: String
+  _icontains: String
+  _ncontains: String
+  _starts_with: String
+  _nstarts_with: String
+  _istarts_with: String
+  _nistarts_with: String
+  _ends_with: String
+  _nends_with: String
+  _iends_with: String
+  _niends_with: String
+  _in: [String]
+  _nin: [String]
+  _null: Boolean
+  _nnull: Boolean
+  _empty: Boolean
+  _nempty: Boolean
+}
+
+input subjects_filter {
+  id: string_filter_operators
+  sort: number_filter_operators
+  name: string_filter_operators
+  icon: string_filter_operators
+  examType: examTypes_filter
+  _and: [subjects_filter]
+  _or: [subjects_filter]
+}

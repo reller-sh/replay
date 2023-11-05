@@ -30,6 +30,7 @@ export interface SliceState {
         accepted: Nullable<string>
     }
     subjects: Subjects[]
+    ws: any[]
 }
 
 
@@ -42,7 +43,8 @@ const initialState: SliceState = {
         phoneNumberCountry: null,
         accepted: null,
     },
-    subjects: []
+    subjects: [],
+    ws: []
 };
 
 
@@ -75,6 +77,9 @@ export const slice = createSlice({
         },
         setSubjects: (state, action: PayloadAction<Subjects[]>) => {
             state.subjects = action.payload
+        },
+        setEntities: (state, action: PayloadAction<any>) => {
+            state.ws.push(action.payload);
         },
     },
 });
